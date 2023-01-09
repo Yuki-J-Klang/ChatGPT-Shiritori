@@ -13,6 +13,23 @@
   font-weight: bold;
   font-style: normal;
 }
+
+.body {
+  height: 100%;
+}
+
+.header {
+  margin: 0;
+  height: 10%;
+  font-size: 16px;
+  background:  #10a37f;
+  border: 3px solid rgb(20, 126, 34);
+}
+.header h3{
+  font-size: 20px;
+  padding: 10px;
+}
+
 .main,
 .main input {
   font-size: 16px;
@@ -21,47 +38,50 @@
   font-family: "ColfaxAI", Helvetica, sans-serif;
 }
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 60px;
-}
-.main .icon {
-  width: 34px;
-}
-.main h3 {
-  font-size: 32px;
-  line-height: 40px;
-  font-weight: bold;
-  color: #202123;
-  margin: 16px 0 40px;
+  margin: 0;
+  height: 100%;
+  overflow: auto;/* スクロールを効かせつつ、メッセージがタイムラインの外に出ないようにする */
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  background-color: rgb(119, 178, 179);
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2) inset;/*ヘッダーの下に影を入れる*/
 }
 .main form {
-  display: flex;
-  flex-direction: column;
-  width: 320px;
+  position: fixed;
+  bottom: 0.5%;
+  display: inline-block;
+  width: 100%;
 }
 .main input[type="text"] {
-  padding: 12px 16px;
+  display: inline-block;
+  width: calc(100% - 110px);
+  padding: 12px;
   border: 1px solid #10a37f;
   border-radius: 4px;
-  margin-bottom: 24px;
   outline-color: #10a37f;
+  box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2) inset;/*内側に影を入れてテキストエリアらしくした*/
+  text-align: left;
+  box-sizing: border-box;
 }
 .main ::placeholder {
   color: #8e8ea0;
   opacity: 1;
 }
 .main input[type="submit"] {
-  padding: 12px 0;
+  display: flex;
+  padding: 12px 5px;
+  margin: 0 5px;
   color: #fff;
   background-color: #10a37f;
   border: none;
   border-radius: 4px;
   text-align: center;
   cursor: pointer;
+  float: right;
+  box-sizing: border-box;
 }
-.main .result {
-  font-weight: bold;
-  margin-top: 40px;
+
+.main input[type="submit"]:hover{
+  background: #28b642;
+  cursor: pointer;
 }

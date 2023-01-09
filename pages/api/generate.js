@@ -1,25 +1,30 @@
 import { Configuration, OpenAIApi } from "openai";
+  
+const UserUsedWords = [];
+const AiUsedWords = [];
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
+
 export default async function (req, res) {
+
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message: "OpenAI API key not configured, please follow instructions in README.md",
+        message: "OpenAI API key not configured",
       }
     });
     return;
   }
 
-  const animal = req.body.animal || '';
-  if (animal.trim().length === 0) {
+  const words = req.body.words || '';
+  if (words.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "文字を入れてください。",
       }
     });
     return;
@@ -28,12 +33,34 @@ export default async function (req, res) {
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(animal),
-      temperature: 0.6,
+      prompt: generatePrompt(words) || "次は、貴方のターンです。",
+      temperature: 0,
     });
-    res.status(200).json({ result: completion.data.choices[0].text });
+    
+    UserUsedWords.push = words;
+    result = completion.data.choices[0].text;
+
+    if(words === 'ん' || words === 'ン'){
+      result = "「ん」または「ン」がついているので、貴方の負けです。";
+      res.status(200).json(result);
+    } else if(UserUsedWords.includes(words) || AiUsedWords.includes(words)){
+      result = "既出の単語を使用したので、貴方の負けです。"
+      res.status(200).json(result);
+    } else if(result.slice(-1) == 'ん' || result.slice(-1) == 'ン') {
+      completion;
+      res.status(200).json({ result: completion.data.choices[0].text });
+      AiUsedWords.push = result;
+    } else if(UserUsedWords.includes(result) || AiUsedWords.includes(result)){
+      completion;
+      res.status(200).json({ result: completion.data.choices[0].text });
+      AiUsedWords.push = result;
+    } else {
+      res.status(200).json({ result: completion.data.choices[0].text });
+      AiUsedWords.push = result;
+    }
+    
+
   } catch(error) {
-    // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);
@@ -48,15 +75,15 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
-
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
+function generatePrompt(words) {
+  const replyWords = words.slice(-1);
+  return `Userから送られた単語の最後の音節から始まり、末尾が「ん」にならない単語を1つあげてください。同じ単語は使ってはいけません。
+  User: アザラシ
+  Ai: 屍
+  User: 粘土
+  Ai: ドミニカ共和国
+  User: クリスマス
+  Ai: するめ
+  User: ${replyWords}
+  Ai:`;
 }

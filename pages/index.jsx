@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { useState } from "react";
 import styles from "./index.module.css";
+import { useState } from "react";
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [wordsInput, setWordsInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -14,7 +14,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: animalInput }),
+        body: JSON.stringify({ words: wordsInput }),
       });
 
       const data = await response.json();
@@ -23,33 +23,35 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setAnimalInput("");
+      setWordsInput("");
     } catch(error) {
-      // Consider implementing your own error handling logic here
+      
       console.error(error);
       alert(error.message);
     }
   }
 
   return (
-    <div>
+    <div className={styles.body}>
       <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <title>SAHIRITORⅡ</title>
       </Head>
-
+      <header className={styles.header}>
+        <h3>SAHIRITORⅡ</h3>
+      </header>
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            name="words"
+            placeholder="Enter an words"
+            value={wordsInput}
+            onChange={(e) => setWordsInput(e.target.value)}
           />
-          <input type="submit" value="Generate names" />
+          <input 
+            type="submit" 
+            value="Send words"
+          />
         </form>
         <div className={styles.result}>{result}</div>
       </main>
