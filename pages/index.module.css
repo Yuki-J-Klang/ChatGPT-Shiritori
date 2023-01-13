@@ -14,74 +14,53 @@
   font-style: normal;
 }
 
-.body {
-  height: 100%;
-}
-
 .header {
-  margin: 0;
-  height: 10%;
-  font-size: 16px;
-  background:  #10a37f;
-  border: 3px solid rgb(20, 126, 34);
+  display: grid;
+  place-items: center;
+  height: 60px;
+  box-shadow: 0px 1.5px 1.5px 0px rgba(127, 127, 127, 0.5);
+  background-color: #f9e9e2;
 }
-.header h3{
+.header h3 {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: bold;
+  color: #d87d49;
+}
+
+.font {
   font-size: 20px;
-  padding: 10px;
 }
 
-.main,
-.main input {
-  font-size: 16px;
-  line-height: 24px;
-  color: #353740;
-  font-family: "ColfaxAI", Helvetica, sans-serif;
-}
-.main {
-  margin: 0;
-  height: 100%;
-  overflow: auto;/* スクロールを効かせつつ、メッセージがタイムラインの外に出ないようにする */
-  border-right: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-  background-color: rgb(119, 178, 179);
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2) inset;/*ヘッダーの下に影を入れる*/
-}
-.main form {
-  position: fixed;
-  bottom: 0.5%;
-  display: inline-block;
-  width: 100%;
-}
-.main input[type="text"] {
-  display: inline-block;
-  width: calc(100% - 110px);
-  padding: 12px;
-  border: 1px solid #10a37f;
-  border-radius: 4px;
-  outline-color: #10a37f;
-  box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2) inset;/*内側に影を入れてテキストエリアらしくした*/
-  text-align: left;
-  box-sizing: border-box;
-}
-.main ::placeholder {
-  color: #8e8ea0;
-  opacity: 1;
-}
-.main input[type="submit"] {
+.form {
   display: flex;
-  padding: 12px 5px;
-  margin: 0 5px;
-  color: #fff;
-  background-color: #10a37f;
-  border: none;
-  border-radius: 4px;
-  text-align: center;
-  cursor: pointer;
-  float: right;
-  box-sizing: border-box;
+  gap: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 75px;
+  padding: 12px 20px;
 }
-
-.main input[type="submit"]:hover{
-  background: #28b642;
+.form input {
+  display: inline-block;
+  flex-grow: 1;
+  border: 1.5px solid gray;
+  border-radius: 10px;
+  height: 100%;
+  width: 60%;
+  padding: 0 10px;
+  color: darkgray;
+}
+.form button {
+  display: inline-block;
+  border-radius: 15px;
+  height: 100%;
+  padding: 0 10px;
+  color: white;
+  background-color: #d87d49;
   cursor: pointer;
+}
+.form button:hover {
+  opacity: 0.75;
+  transition: 0.3s;
 }
