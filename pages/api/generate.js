@@ -33,8 +33,6 @@ export default async function (req, res) {
       temperature: 0,
     });
 
-    console.log(word);
-    console.log(generatePrompt(word));
     res.json({
       result: completion.data.choices[0].text.trim().replaceAll("\n", ""),
     });

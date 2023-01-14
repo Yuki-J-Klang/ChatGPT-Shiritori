@@ -30,13 +30,17 @@ export default function Home() {
       }
 
       if (["ん", "ン"].includes(wordInput.slice(-1))) {
-        setResultMsg("「ん」または「ン」がついているので、貴方の負けです。");
+        setResultMsg(
+          "語尾に「ん」または「ン」がついているので、貴方の負けです。 ^^;"
+        );
       } else if (usedWords.includes(wordInput) === true) {
-        setResultMsg("既出の単語を使用したので、貴方の負けです。");
+        setResultMsg("既出の単語を使用したので、貴方の負けです。 ^^;");
       } else if (["ん", "ン"].includes(data.result.slice(-1))) {
-        setResultMsg("「ん」または「ン」がついているので、貴方の勝ちです。");
+        setResultMsg(
+          "語尾に「ん」または「ン」がついているので、貴方の勝ちです。よかったね。"
+        );
       } else if (usedWords.includes(data.result) === true) {
-        setResultMsg("既出の単語を使用したので、貴方の勝ちです。");
+        setResultMsg("既出の単語を使用したので、貴方の勝ちです。よかったね。");
       }
 
       setUsedWords((prev) => [...prev, data.result]);
