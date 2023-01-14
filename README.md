@@ -40,4 +40,4 @@
 
 - React.js
 
-- Html / Css
+- HTML / CSS
