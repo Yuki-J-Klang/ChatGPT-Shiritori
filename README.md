@@ -1,4 +1,4 @@
-# 「SAHIRITORII」
+# 「SAHIRITORⅡ」
 # 概要
 
 ## AIとしりとりができるアプリ
