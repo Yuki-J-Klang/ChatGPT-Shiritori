@@ -1,41 +1,43 @@
-# OpenAI API Quickstart - Node.js example app
+# 「SAHIRITORII」
+# 概要
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+## AIとしりとりができるアプリ
 
-## Setup
+**単語を入力した時**
+![image](https://user-images.githubusercontent.com/111096145/212474396-3f5169e5-d52f-4999-a8b9-41a1c12a8625.png)
 
-1. If you don’t have Node.js installed, [install it from here](https://nodejs.org/en/)
 
-2. Clone this repository
+**AIから単語が1つ返ってきた時**
+![image](https://user-images.githubusercontent.com/111096145/212474504-4d2934cb-a9cc-492d-a028-6e47c6ae45f4.png)
 
-3. Navigate into the project directory
 
-   ```bash
-   $ cd openai-quickstart-node
-   ```
+**語尾が「ン」で負けた時**
+![image](https://user-images.githubusercontent.com/111096145/212474900-58ca0dd1-c16a-42ff-9482-97f15678845c.png)
 
-4. Install the requirements
 
-   ```bash
-   $ npm install
-   ```
 
-5. Make a copy of the example environment variables file
 
-   On Linux systems: 
-   ```bash
-   $ cp .env.example .env
-   ```
-   On Windows:
-   ```powershell
-   $ copy .env.example .env
-   ```
-6. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
+## 使用方法
 
-7. Run the app
+1. 開始する`単語`を1つ入力する。
 
-   ```bash
-   $ npm run dev
-   ```
+2. 入力した単語の末尾からAIが単語を1つ返す。
 
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://beta.openai.com/docs/quickstart).
+3. `1〜2`を勝敗が決まるまで繰り返す。
+
+
+- 勝敗の判定方法
+
+   -　単語の末尾が「ん」もしくは「ン」の場合。
+
+   -　１度使用した単語を再度使用した場合。 
+
+
+
+
+## 使用技術
+- ChatGPT
+
+- React.js
+
+- Html / Css
